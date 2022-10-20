@@ -1,10 +1,13 @@
-var headerTitle = document.getElementById('header-title');
-var header =document.getElementById('main-header');
-header.style.borderBottom='solid 3px #000';
-var items = document.getElementsByClassName('list-group-item');
-//console.log(title[0]);
-//items.style.fontWeight='bold';this will give error 
-items[2].style.backgroundColor='green';  
-for(var i=0; i < items.length;i++){
-    items[i].style.fontWeight='bold';
+
+// getelementbytagname
+ var li = document.getElementsByTagName('li');
+console.log(li);
+console.log(li[1]);
+li[1].textContent='Hello2';
+li[1].style.fontWeight='bold';
+li[1].style.backgroundColor='yellow';  
+
+for(var i=0; i < li.length;i++){
+    li[i].style.backgroundColor='gray';
 }
+//tag applies to tag but class applies to only class not tag
