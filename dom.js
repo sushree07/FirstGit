@@ -1,43 +1,51 @@
-// Create a div
-var newDiv =  document.createElement('div');
+var form = document.getElementById('addForm');
+var itemList = document.getElementById('items');
+var filter = document.getElementById('filter');
 
-// Add class
-newDiv.className= 'hello';
+// Form submit event
+form.addEventListener('submit', addItem);
+// Delete event
+itemList.addEventListener('click', removeItem);
+// Filter event
+filter.addEventListener('keyup', filterItems);
 
-// Add id
-newDiv.id = 'hello1';
+// Add item
+function addItem(e){
+  e.preventDefault();
 
-// Add attr
-newDiv.setAttribute('title', 'Hello Div');
+  // Get input value
+  var newItem = document.getElementById('item').value;
 
-// Create text node
-var newDivText = document.createTextNode('Hello World');
+  // Create new li element
+  var li = document.createElement('li');
+  // Add class
+  li.className = 'list-group-item';
+  // Add text node with input value
+  li.appendChild(document.createTextNode(newItem));
 
-// Add text to div
-newDiv.appendChild(newDivText);
+  // Create del button element
+  var deleteBtn = document.createElement('button');
 
-var container = document.querySelector('header .container');
-var h1 = document.querySelector('header h1');
+  // Add classes to del button
+  deleteBtn.className = 'btn btn-danger btn-sm float-right delete';
 
-console.log(newDiv);
+  // Append text node
+  deleteBtn.appendChild(document.createTextNode('X'));
 
-newDiv.style.fontSize = '30px';
+  // Append button to li
+  li.appendChild(deleteBtn);
 
-container.insertBefore(newDiv, h1);
+  // Append li to list
+  itemList.appendChild(li);
+}
 
-//add HELLO word before tiem1
-// task7
-var newDiv=document.createElement('div');
-newDiv.className='hello 1';
-newDiv.id='hello 1';
-newDiv.setAttribute('title','hello div');
-var newDivText=document.createTextNode('hello world');
-newDiv.appendChild(newDivText);
+// Remove item
+function removeItem(e){
+  if(e.target.classList.contains('delete')){
+    if(confirm('Are You Sure?')){
+      var li = e.target.parentElement;
+      itemList.removeChild(li);
+    }
+  }
+}
 
-var li=document.querySelector('li'); //here we access the whole li
-console.log(li.parentNode); //here we find the parent node of li
-var itemlist=li.parentNode; //it is stored in variable
-
-var item=document.querySelector('li:nth-child(1)');
-console.log(item);
-itemlist.insertBefore(newDiv,li);
