@@ -1,7 +1,8 @@
-
+<!DOCTYPE html>
 <html>
     <body>
-     
+        <h2>Booking tickets</h2>
+
         <form onsubmit="saveToLocalStorage(event)">
             <lable>Name</lable>
             <input type ="text" name="username" required/>
@@ -14,13 +15,28 @@
         <script>
             function saveToLocalStorage(event){
                 event.preventDefault();
-                const name = event.target.username.value;
-                const email = event.target.emailId.value;
-                const phonenumber = event.target.phonenumber.value;
-                localStorage.setItem("name",name);
-                localStorage.setItem("email",email);
-                localStorage.setItem("phonenumber",phonenumber);                  
+                const name=event.target.username.value;
+                const email=event.target.emailId.value;
+                const phonenumber=event.target.phonenumber.value;
+                const obj = {
+                name,
+                email,
+                phonenumber
             }
+              localStorage.setItem(obj.email,JSON.stringify(obj));
+              showNewUserOnScreen(obj)
+            }
+
+            function showNewUserOnScreen(user){
+                
+                const parentNode = document.getElementById("lisOfUsers");
+
+                const childHTML = "<li> ${user.name} - ${user.email} </li>"
+                
+                parentNode.innerHTML = parentNode.innerHTML + childHTML;
+            }
+            
+
         </script>
     </body>
 </html>
